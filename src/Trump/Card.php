@@ -19,4 +19,10 @@ class Card
     {
         return $this->rank;
     }
+
+    public function equals(Card $card): bool
+    {
+        return $this->suit === $card->suit
+            && $this->rank === $card->rank;
+    }
 }
