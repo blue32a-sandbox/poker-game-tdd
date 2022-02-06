@@ -25,4 +25,9 @@ class Card
         return $this->suit === $card->suit
             && $this->rank === $card->rank;
     }
+
+    public function __toString(): string
+    {
+        return sprintf('%s_%s', $this->suit->value, $this->rank->value);
+    }
 }

@@ -55,4 +55,13 @@ class CardTest extends TestCase
         $card = new Card(Suit::Hearts, Rank::Ace);
         $this->assertFalse($card->equals(new Card(Suit::Hearts, Rank::King)));
     }
+
+    /**
+     * @test
+     */
+    public function クラスオブジェクトは絵柄とランクを含む文字列に変更できる_文字列”H_A”をに変換される(): void
+    {
+        $card = new Card(Suit::Hearts, Rank::Ace);
+        $this->assertSame('H_A', strval($card));
+    }
 }
