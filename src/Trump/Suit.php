@@ -6,8 +6,8 @@ namespace Poker\Trump;
 
 enum Suit: string
 {
-    case Hearts = 'ハート';
-    case Diamonds = 'ダイヤモンド';
-    case Clubs = 'クラブ';
-    case Spades = 'スペード';
+    case Hearts = 'H';
+    case Diamonds = 'D';
+    case Clubs = 'C';
+    case Spades = 'S';
 }

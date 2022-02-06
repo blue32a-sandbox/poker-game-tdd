@@ -20,32 +20,32 @@ class SuitTest extends TestCase
     /**
      * @test
      */
-    public function 絵柄Heartsは文字列ハートを持つ(): void
+    public function 絵柄Heartsは文字列Hを持つ(): void
     {
-        $this->assertSame('ハート', Suit::Hearts->value);
+        $this->assertSame('H', Suit::Hearts->value);
     }
 
     /**
      * @test
      */
-    public function 絵柄Diamondsは文字列ダイヤモンドを持つ(): void
+    public function 絵柄Diamondsは文字列Dを持つ(): void
     {
-        $this->assertSame('ダイヤモンド', Suit::Diamonds->value);
+        $this->assertSame('D', Suit::Diamonds->value);
     }
 
     /**
      * @test
      */
-    public function 絵柄Clubsは文字列クラブを持つ(): void
+    public function 絵柄Clubsは文字列Cを持つ(): void
     {
-        $this->assertSame('クラブ', Suit::Clubs->value);
+        $this->assertSame('C', Suit::Clubs->value);
     }
 
     /**
      * @test
      */
-    public function 絵柄Spadesは文字列スペードを持つ(): void
+    public function 絵柄Spadesは文字列Sを持つ(): void
     {
-        $this->assertSame('スペード', Suit::Spades->value);
+        $this->assertSame('S', Suit::Spades->value);
     }
 }
