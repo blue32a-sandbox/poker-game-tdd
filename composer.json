@@ -19,6 +19,6 @@
         "sort-packages": true
     },
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit --testdox"
     }
 }
