@@ -23,4 +23,9 @@ class GameDeck extends Deck
 
         return new self($cards);
     }
+
+    private function __construct(private array $cards)
+    {
+        parent::__construct($cards);
+    }
 }

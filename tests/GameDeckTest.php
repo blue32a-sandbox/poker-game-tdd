@@ -29,4 +29,13 @@ class GameDeckTest extends TestCase
 
         $this->assertSame(count($cardsA), count($cardsB));
     }
+
+    /**
+     * @test
+     */
+    public function 任意のデッキを生成することはできない(): void
+    {
+        $this->expectErrorMessageMatches('/Call to private Poker\\\\GameDeck::__construct()/');
+        new GameDeck([]);
+    }
 }
