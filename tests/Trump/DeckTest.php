@@ -13,45 +13,60 @@ use Poker\Trump\Suit;
 
 class DeckTest extends TestCase
 {
+    private function factoryDeck(array $cards): Deck
+    {
+        return new Deck($cards);
+    }
+
+    private function factoryCard(Suit $suit, Rank $rank): Card
+    {
+        return new Card($suit, $rank);
+    }
+
     /**
      * @test
      */
     public function コンストラクタの引数cardsはCardクラスの配列が含まれると例外が発生する(): void
     {
         $this->expectException(InvalidArgumentException::class);
+
         new Deck([
-            new Card(Suit::Hearts, Rank::Ace),
-            'invalid valud',
+            $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace),
+            'invalid value',
         ]);
     }
 
     /**
      * @test
      */
-    public function cardsメソッドはカードのコレクションを取得する_コンストラクタに渡した枚数と同じ、2枚のカードを返す(): void
+    public function cardsメソッドはカードのコレクションを返す_コンストラクタに渡した枚数と同じ、2枚のカードを返す(): void
     {
-        $deck = new Deck([
-            new Card(Suit::Hearts, Rank::Ace),
-            new Card(Suit::Clubs, Rank::Five),
+        $deck = $this->factoryDeck([
+            $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace),
+            $this->factoryCard(suit: Suit::Clubs, rank: Rank::Five),
         ]);
 
         $cards = $deck->cards();
-        $this->assertSame(2, count($cards));
+
+        $this->assertCount(2, $cards);
     }
 
     /**
      * @test
      */
-    public function cardsメソッドはカードのコレクションを取得する_コンストラクタに渡したカードと同じ、HeartsのAceとClubsの5を返す(): void
+    public function cardsメソッドはカードのコレクションを返す_コンストラクタに渡したカードと同じ、HeartsのAceとClubsのFiveを返す(): void
     {
-        $deck = new Deck([
-            new Card(Suit::Hearts, Rank::Ace),
-            new Card(Suit::Clubs, Rank::Five),
+        $heartsAceCard = $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace);
+        $clubsFiveCard = $this->factoryCard(suit: Suit::Clubs, rank: Rank::Five);
+        $deck = $this->factoryDeck([
+            $heartsAceCard,
+            $clubsFiveCard,
         ]);
 
         $cards = $deck->cards();
-        $this->assertTrue((new Card(Suit::Hearts, Rank::Ace))->equals($cards[0]));
-        $this->assertTrue((new Card(Suit::Clubs, Rank::Five))->equals($cards[1]));
+
+        $this->assertObjectEquals($heartsAceCard, $cards[0], 'equals', '最初の要素はHeartsのAce');
+        $this->assertObjectEquals($clubsFiveCard, $cards[1], 'equals', '２番目の要素はCrubsのFive');
     }
 
     /**
@@ -59,14 +74,14 @@ class DeckTest extends TestCase
      */
     public function cardsメソッドはカードのコレクションを取得する_取得したコレクションにカードを1枚追加してもDeckのコレクションは2枚のまま(): void
     {
-        $deck = new Deck([
-            new Card(Suit::Hearts, Rank::Ace),
-            new Card(Suit::Clubs, Rank::Five),
+        $deck = $this->factoryDeck([
+            $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace),
+            $this->factoryCard(suit: Suit::Clubs, rank: Rank::Five),
         ]);
 
         $cards = $deck->cards();
-        $cards[] = new Card(Suit::Diamonds, Rank::Two);
+        $cards[] = $this->factoryCard(suit: Suit::Diamonds, rank: Rank::Two);
 
-        $this->assertSame(2, count($deck->cards()));
+        $this->assertCount(2, $deck->cards());
     }
 }
