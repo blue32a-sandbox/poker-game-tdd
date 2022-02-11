@@ -11,13 +11,18 @@ use Poker\Trump\Suit;
 
 class CardTest extends TestCase
 {
+    private function factoryCard(Suit $suit, Rank $rank)
+    {
+        return new Card($suit, $rank);
+    }
+
     /**
      * @test
      */
     public function suitメソッドは絵柄を取得できる_コンストラクタに渡したHeartsを返す(): void
     {
-        $card = new Card(Suit::Hearts, Rank::Ace);
-        $this->assertSame(Suit::Hearts, $card->suit());
+        $heartsCard = $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace);
+        $this->assertSame(Suit::Hearts, $heartsCard->suit());
     }
 
     /**
@@ -25,35 +30,38 @@ class CardTest extends TestCase
      */
     public function rankメソッドはランクを取得できる_コンストラクタに渡したAceを返す(): void
     {
-        $card = new Card(Suit::Hearts, Rank::Ace);
-        $this->assertSame(Rank::Ace, $card->rank());
+        $aceCard = $this->factoryCard(rank: Rank::Ace, suit: Suit::Hearts);
+        $this->assertSame(Rank::Ace, $aceCard->rank());
     }
 
     /**
      * @test
      */
-    public function equalsメソッドの絵柄とランクが一致する場合にtrueを返す_HeartsのAceを渡すとtrueを返す(): void
+    public function equalsメソッドは等価比較ができる_絵柄とランクが同じHeartsのAceを渡すとtrueを返す(): void
     {
-        $card = new Card(Suit::Hearts, Rank::Ace);
-        $this->assertTrue($card->equals(new Card(Suit::Hearts, Rank::Ace)));
+        $heartsAceCardA = $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace);
+        $heartsAceCardB = $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace);
+        $this->assertTrue($heartsAceCardA->equals($heartsAceCardB));
     }
 
     /**
      * @test
      */
-    public function equalsメソッドの絵柄とランクが一致する場合にtrueを返す_絵柄が違うCrubsのAceを渡すとfalseを返す(): void
+    public function equalsメソッドは等価比較ができる_絵柄が異なるCrubsのAceを渡すとfalseを返す(): void
     {
-        $card = new Card(Suit::Hearts, Rank::Ace);
-        $this->assertFalse($card->equals(new Card(Suit::Clubs, Rank::Ace)));
+        $heartsAceCard = $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace);
+        $crubsAceCard = $this->factoryCard(suit: Suit::Clubs, rank: Rank::Ace);
+        $this->assertFalse($heartsAceCard->equals($crubsAceCard));
     }
 
     /**
      * @test
      */
-    public function equalsメソッドの絵柄とランクが一致する場合にtrueを返す_ランクが違うHeartsのKingを渡すとfalseを返す(): void
+    public function equalsメソッドは等価比較ができる_ランクが異なるHeartsのKingを渡すとfalseを返す(): void
     {
-        $card = new Card(Suit::Hearts, Rank::Ace);
-        $this->assertFalse($card->equals(new Card(Suit::Hearts, Rank::King)));
+        $heartsAceCard = $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace);
+        $heartsKingCard = $this->factoryCard(suit: Suit::Hearts, rank: Rank::King);
+        $this->assertFalse($heartsAceCard->equals($heartsKingCard));
     }
 
     /**
@@ -61,7 +69,7 @@ class CardTest extends TestCase
      */
     public function クラスオブジェクトは絵柄とランクを含む文字列に変更できる_文字列”H_A”をに変換される(): void
     {
-        $card = new Card(Suit::Hearts, Rank::Ace);
-        $this->assertSame('H_A', strval($card));
+        $heartsAceCard = $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace);
+        $this->assertSame('H_A', strval($heartsAceCard));
     }
 }
