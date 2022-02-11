@@ -8,6 +8,7 @@ use Poker\Trump\Card;
 use Poker\Trump\Deck;
 use Poker\Trump\Rank;
 use Poker\Trump\Suit;
+use RuntimeException;
 
 class GameDeck extends Deck
 {
@@ -24,8 +25,15 @@ class GameDeck extends Deck
         return new self($cards);
     }
 
-    private function __construct(private array $cards)
+    private function __construct(protected array $cards)
     {
         parent::__construct($cards);
+    }
+
+    public function shuffle(): void
+    {
+        if (!shuffle($this->cards)) {
+            throw new RuntimeException('Failed to shuffle the cards.');
+        }
     }
 }

@@ -8,7 +8,7 @@ use InvalidArgumentException;
 
 class Deck
 {
-    public function __construct(private array $cards)
+    public function __construct(protected array $cards)
     {
         foreach ($cards as $card) {
             if (!$card instanceof Card) {
