@@ -7,6 +7,9 @@ namespace Tests\Trump;
 use PHPUnit\Framework\TestCase;
 use Poker\Trump\Suit;
 
+/**
+ * @testdox トランプの絵柄を示す Suit 列挙型のテスト
+ */
 class SuitTest extends TestCase
 {
     /**

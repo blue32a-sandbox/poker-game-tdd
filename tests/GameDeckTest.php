@@ -7,6 +7,9 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use Poker\GameDeck;
 
+/**
+ * @testdox ゲームで使用するデッキを示す GameDeck クラスのテスト
+ */
 class GameDeckTest extends TestCase
 {
     /**

@@ -9,6 +9,9 @@ use Poker\Trump\Card;
 use Poker\Trump\Rank;
 use Poker\Trump\Suit;
 
+/**
+ * @testdox トランプのカードを示す Card クラスのテスト
+ */
 class CardTest extends TestCase
 {
     private function factoryCard(Suit $suit, Rank $rank)

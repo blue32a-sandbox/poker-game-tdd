@@ -11,6 +11,9 @@ use Poker\Trump\Deck;
 use Poker\Trump\Rank;
 use Poker\Trump\Suit;
 
+/**
+ * @testdox トランプのデッキを示す Deck クラスのテスト
+ */
 class DeckTest extends TestCase
 {
     private function factoryDeck(array $cards): Deck

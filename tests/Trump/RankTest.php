@@ -7,6 +7,9 @@ namespace Tests\Trump;
 use PHPUnit\Framework\TestCase;
 use Poker\Trump\Rank;
 
+/**
+ * @testdox トランプのランクを示す Rank 列挙型のテスト
+ */
 class RankTest extends TestCase
 {
     /**
