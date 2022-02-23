@@ -21,13 +21,16 @@ class PlayerHand extends CardCollection
         parent::__construct($cards);
     }
 
-    public function change(int $targetNum, Card $card): void
+    public function change(int $targetNum, Card $card): self
     {
         if ($targetNum < 1 || $targetNum > 5) {
             throw new InvalidArgumentException('The target num is from 1 to 5.');
         }
 
-        $this->cards[$targetNum - 1] = $card;
+        $cards = $this->cards;
+        $cards[$targetNum - 1] = $card;
+
+        return new self($cards);
     }
 
     public function __toString(): string

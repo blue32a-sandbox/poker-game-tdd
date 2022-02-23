@@ -88,7 +88,24 @@ class PlayerHandTest extends TestCase
     /**
      * @test
      */
-    public function changeメソッドはカードを1枚入れ替えることができる_2番目のカードをClabsのJackに入れ替える(): void
+    public function changeメソッドはカードを1枚入れ替えた新しいオブジェクトを返す_2番目のカードをClabsのJackに入れ替える(): void
+    {
+        $cards = $this->facotryFiveCards();
+
+        // 2番目のカードはClubsのJackではない
+        $cards[1] = $this->factoryCard(suit: Suit::Hearts, rank: Rank::Two);
+        $playerHand = new PlayerHand($cards);
+
+        $clubsJack = $this->factoryCard(suit: Suit::Clubs, rank: Rank::Jack);
+        $changedPlayerHand = $playerHand->change(2, $clubsJack);
+
+        $this->assertObjectEquals($clubsJack, $changedPlayerHand->toArray()[1]);
+    }
+
+    /**
+     * @test
+     */
+    public function changeメソッドはカードを1枚入れ替えた新しいオブジェクトを返す_元のオブジェクトは変更されない(): void
     {
         $cards = $this->facotryFiveCards();
 
@@ -99,13 +116,14 @@ class PlayerHandTest extends TestCase
         $clubsJack = $this->factoryCard(suit: Suit::Clubs, rank: Rank::Jack);
         $playerHand->change(2, $clubsJack);
 
-        $this->assertObjectEquals($clubsJack, $playerHand->toArray()[1]);
+        // assertObjectEqualsの逆は無いらしい
+        $this->assertFalse($clubsJack->equals($playerHand->toArray()[1]));
     }
 
     /**
      * @test
      */
-    public function changeメソッドはカードを1枚入れ替えることができる_交換対象は1から5までの数値を指定できる_0を渡すと例外が発生する(): void
+    public function changeメソッドはカードを1枚入れ替えた新しいオブジェクトを返す_交換対象は1から5までの数値を指定できる_0を渡すと例外が発生する(): void
     {
         $cards = $this->facotryFiveCards();
         $playerHand = new PlayerHand($cards);
@@ -119,7 +137,7 @@ class PlayerHandTest extends TestCase
     /**
      * @test
      */
-    public function changeメソッドはカードを1枚入れ替えることができる_交換対象は1から5までの数値を指定できる_6を渡すと例外が発生する(): void
+    public function changeメソッドはカードを1枚入れ替えた新しいオブジェクトを返す_交換対象は1から5までの数値を指定できる_6を渡すと例外が発生する(): void
     {
         $cards = $this->facotryFiveCards();
         $playerHand = new PlayerHand($cards);
