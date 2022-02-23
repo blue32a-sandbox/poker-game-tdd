@@ -30,10 +30,14 @@ class GameDeck extends CardCollection
         parent::__construct($cards);
     }
 
-    public function shuffle(): void
+    public function shuffle(): self
     {
-        if (!shuffle($this->cards)) {
+        $cards = $this->cards;
+
+        if (!shuffle($cards)) {
             throw new RuntimeException('Failed to shuffle the cards.');
         }
+
+        return new self($cards);
     }
 }

@@ -2,8 +2,8 @@
 
 - [x] GameDeckもPlayerHandもCardのコレクション
 
-- [ ] GameDeckをイミュータブルにする
-    - [ ] shuffle()は新しいGameDeckを生成する
+- [x] GameDeckをイミュータブルにする
+    - [x]] shuffle()は新しいGameDeckを生成する
 
 - [ ] PlayerHandをイミュータブルにする
     - [ ] change()は新しいPlayerHandを生成する

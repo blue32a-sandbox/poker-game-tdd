@@ -48,17 +48,31 @@ class GameDeckTest extends TestCase
      */
     public function shuffleメソッドはカードをシャッフルする_シャッフルの前後で並び順が異なる(): void
     {
-        $gemeDeck = GameDeck::factory();
-        $beforArray = $gemeDeck->toArray();
+        $beforeShuffle = GameDeck::factory();
 
-        $this->assertSame($beforArray, $gemeDeck->toArray(), 'シャッフル前は並び順が変わらない');
-
-        $gemeDeck->shuffle();
+        $afterShuffle = $beforeShuffle->shuffle();
 
         /**
          * シャッフル前と同じになる可能性は想定される。(flaky)
          * このアサーションでは「並び順以外の変更はされないこと」は検出できない。
          */
-        $this->assertNotSame($beforArray, $gemeDeck->toArray(), '(flaky) シャッフル後は後は並び順が変わる');
+        $this->assertNotSame(
+            $beforeShuffle->toArray(),
+            $afterShuffle->toArray(),
+            '(flaky) シャッフル後は後は並び順が変わる'
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function shuffleメソッドはカードをシャッフルする_元のオブジェクトは変更されない(): void
+    {
+        $beforeShuffle = GameDeck::factory();
+        $beforeShuffleCards = $beforeShuffle->toArray();
+
+        $beforeShuffle->shuffle();
+
+        $this->assertSame($beforeShuffleCards, $beforeShuffle->toArray());
     }
 }
