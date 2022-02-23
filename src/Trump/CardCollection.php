@@ -6,7 +6,7 @@ namespace Poker\Trump;
 
 use InvalidArgumentException;
 
-class Deck
+class CardCollection
 {
     public function __construct(protected array $cards)
     {
@@ -17,7 +17,7 @@ class Deck
         }
     }
 
-    public function cards(): array
+    public function toArray(): array
     {
         return $this->cards;
     }

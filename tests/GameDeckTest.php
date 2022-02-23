@@ -18,7 +18,7 @@ class GameDeckTest extends TestCase
     public function factoryメソッドはデッキを生成する_デッキは52枚のカードで構成される(): void
     {
         $gemeDeck = GameDeck::factory();
-        $this->assertSame(52, count($gemeDeck->cards()));
+        $this->assertSame(52, count($gemeDeck->toArray()));
     }
 
     /**
@@ -27,7 +27,7 @@ class GameDeckTest extends TestCase
     public function factoryメソッドはデッキを生成する_デッキは絵柄とランクの組み合わせの重複がない(): void
     {
         $gemeDeck = GameDeck::factory();
-        $cardsA = $gemeDeck->cards();
+        $cardsA = $gemeDeck->toArray();
         $cardsB = array_unique($cardsA, SORT_STRING);
 
         $this->assertSame(count($cardsA), count($cardsB));
@@ -49,9 +49,9 @@ class GameDeckTest extends TestCase
     public function shuffleメソッドはカードをシャッフルする_シャッフルの前後で並び順が異なる(): void
     {
         $gemeDeck = GameDeck::factory();
-        $beforCards = $gemeDeck->cards();
+        $beforArray = $gemeDeck->toArray();
 
-        $this->assertSame($beforCards, $gemeDeck->cards(), 'シャッフル前は並び順が変わらない');
+        $this->assertSame($beforArray, $gemeDeck->toArray(), 'シャッフル前は並び順が変わらない');
 
         $gemeDeck->shuffle();
 
@@ -59,6 +59,6 @@ class GameDeckTest extends TestCase
          * シャッフル前と同じになる可能性は想定される。(flaky)
          * このアサーションでは「並び順以外の変更はされないこと」は検出できない。
          */
-        $this->assertNotSame($beforCards, $gemeDeck->cards(), '(flaky) シャッフル後は後は並び順が変わる');
+        $this->assertNotSame($beforArray, $gemeDeck->toArray(), '(flaky) シャッフル後は後は並び順が変わる');
     }
 }

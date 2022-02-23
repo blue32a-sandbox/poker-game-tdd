@@ -88,38 +88,6 @@ class PlayerHandTest extends TestCase
     /**
      * @test
      */
-    public function cardsメソッドはカードのコレクションを返す_コンストラクタに渡したコレクションを返す(): void
-    {
-        $cards = $this->facotryFiveCards();
-
-        $playerHand = new PlayerHand($cards);
-        $playerHandCards = $playerHand->cards();
-
-        $this->assertCount(5, $playerHandCards, '5枚のカード');
-        $this->assertObjectEquals($cards[0], $playerHandCards[0], 'equals', sprintf('1枚目は%s', strval($cards[0])));
-        $this->assertObjectEquals($cards[1], $playerHandCards[1], 'equals', sprintf('2枚目は%s', strval($cards[1])));
-        $this->assertObjectEquals($cards[2], $playerHandCards[2], 'equals', sprintf('3枚目は%s', strval($cards[2])));
-        $this->assertObjectEquals($cards[3], $playerHandCards[3], 'equals', sprintf('4枚目は%s', strval($cards[3])));
-        $this->assertObjectEquals($cards[4], $playerHandCards[4], 'equals', sprintf('5枚目は%s', strval($cards[4])));
-    }
-
-    /**
-     * @test
-     */
-    public function cardsメソッドはカードのコレクションを返す_取得したコレクションにカードを1枚追加しても手札のコレクションは5枚のまま変更されない(): void
-    {
-        $cards = $this->facotryFiveCards();
-
-        $playerHand = new PlayerHand($cards);
-        $playerHandCards = $playerHand->cards();
-        $playerHandCards[] = $this->factoryCard(suit: Suit::Spades, rank: Rank::King);
-
-        $this->assertCount(5, $playerHand->cards());
-    }
-
-    /**
-     * @test
-     */
     public function changeメソッドはカードを1枚入れ替えることができる_2番目のカードをClabsのJackに入れ替える(): void
     {
         $cards = $this->facotryFiveCards();
@@ -131,7 +99,7 @@ class PlayerHandTest extends TestCase
         $clubsJack = $this->factoryCard(suit: Suit::Clubs, rank: Rank::Jack);
         $playerHand->change(2, $clubsJack);
 
-        $this->assertObjectEquals($clubsJack, $playerHand->cards()[1]);
+        $this->assertObjectEquals($clubsJack, $playerHand->toArray()[1]);
     }
 
     /**

@@ -6,27 +6,19 @@ namespace Poker;
 
 use InvalidArgumentException;
 use Poker\Trump\Card;
+use Poker\Trump\CardCollection;
 
-class PlayerHand
+class PlayerHand extends CardCollection
 {
     private const NUM_OF_CARDS = 5;
 
-    public function __construct(private array $cards)
+    public function __construct(protected array $cards)
     {
         if (count($cards) !== self::NUM_OF_CARDS) {
             throw new InvalidArgumentException('The number of cards is five.');
         }
 
-        foreach ($cards as $card) {
-            if (!$card instanceof Card) {
-                throw new InvalidArgumentException('Only Card are valid.');
-            }
-        }
-    }
-
-    public function cards(): array
-    {
-        return $this->cards;
+        parent::__construct($cards);
     }
 
     public function change(int $targetNum, Card $card): void

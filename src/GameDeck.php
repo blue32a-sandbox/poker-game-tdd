@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Poker;
 
 use Poker\Trump\Card;
-use Poker\Trump\Deck;
+use Poker\Trump\CardCollection;
 use Poker\Trump\Rank;
 use Poker\Trump\Suit;
 use RuntimeException;
 
-class GameDeck extends Deck
+class GameDeck extends CardCollection
 {
-    public static function factory(): Deck
+    public static function factory(): self
     {
         $cards = [];
 
