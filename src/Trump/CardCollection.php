@@ -17,6 +17,9 @@ class CardCollection
         }
     }
 
+    /**
+     * @return Card[]
+     */
     public function toArray(): array
     {
         return $this->cards;

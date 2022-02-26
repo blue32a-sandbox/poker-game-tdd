@@ -1,11 +1,12 @@
 # TODO
 
-- [x] GameDeckもPlayerHandもCardのコレクション
-
-- [x] GameDeckをイミュータブルにする
-    - [x]] shuffle()は新しいGameDeckを生成する
-
-- [x] PlayerHandをイミュータブルにする
-    - [x] change()は新しいPlayerHandを生成する
-
 - [ ] 手札の判定
+    - [ ] ストレート・フラッシュ（Straight flush）
+    - [ ] フォーカード（Four Cards）
+    - [ ] フルハウス（Full house）
+    - [ ] フラッシュ（Flush）
+    - [ ] ストレート（Straight）
+    - [ ] ツーペア（Two pair）
+    - [x] ワンペア（One pair）
+    - [ ] ノーペア（No pair）
+    - [ ] 強い役から評価する
