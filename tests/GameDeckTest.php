@@ -34,45 +34,27 @@ class GameDeckTest extends TestCase
     }
 
     /**
-     * @test
-     */
-    public function 任意のデッキを生成することはできない(): void
-    {
-        $this->expectErrorMessageMatches('/Call to private Poker\\\\GameDeck::__construct()/');
-        new GameDeck([]);
-    }
-
-    /**
      * @group flaky
      * @test
      */
-    public function shuffleメソッドはカードをシャッフルする_シャッフルの前後で並び順が異なる(): void
+    public function factoryメソッドはデッキを生成する_カードの並び順はランダムになる(): void
     {
-        $beforeShuffle = GameDeck::factory();
+        $gemeDeckA = GameDeck::factory();
+        $gemeDeckB = GameDeck::factory();
 
-        $afterShuffle = $beforeShuffle->shuffle();
-
-        /**
-         * シャッフル前と同じになる可能性は想定される。(flaky)
-         * このアサーションでは「並び順以外の変更はされないこと」は検出できない。
-         */
+        // ランダムなので同じになる可能性はある (flaky)
         $this->assertNotSame(
-            $beforeShuffle->toArray(),
-            $afterShuffle->toArray(),
-            '(flaky) シャッフル後は後は並び順が変わる'
+            array_map('strval', $gemeDeckA->toArray()),
+            array_map('strval', $gemeDeckB->toArray())
         );
     }
 
     /**
      * @test
      */
-    public function shuffleメソッドはカードをシャッフルする_元のオブジェクトは変更されない(): void
+    public function 任意のデッキを生成することはできない(): void
     {
-        $beforeShuffle = GameDeck::factory();
-        $beforeShuffleCards = $beforeShuffle->toArray();
-
-        $beforeShuffle->shuffle();
-
-        $this->assertSame($beforeShuffleCards, $beforeShuffle->toArray());
+        $this->expectErrorMessageMatches('/Call to private Poker\\\\GameDeck::__construct()/');
+        new GameDeck([]);
     }
 }
