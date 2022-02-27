@@ -5,7 +5,7 @@
     - [ ] フォーカード（Four cards）
     - [ ] フルハウス（Full house）
     - [ ] フラッシュ（Flush）
-    - [ ] ストレート（Straight）
+    - [x] ストレート（Straight）
     - [x] スリーカード（Three cards）
     - [x] ツーペア（Two pair）
     - [x] ワンペア（One pair）
