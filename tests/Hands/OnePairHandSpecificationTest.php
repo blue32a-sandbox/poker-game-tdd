@@ -6,13 +6,10 @@ namespace Tests\Hands;
 
 use PHPUnit\Framework\TestCase;
 use Poker\Hands\OnePairHandSpecification;
-use Poker\PlayerHand;
-use Poker\Trump\Card;
-use Poker\Trump\Rank;
-use Poker\Trump\Suit;
+use Tests\Hands\Factory\TestPlayerHandFactory;
 
 /**
- * @testdox ポーカーの役「ワンペア」の仕様を示す OnePairHandSpecification クラスのテスト
+ * @testdox ポーカーのハンド「ワンペア」の仕様を示す OnePairHandSpecification クラスのテスト
  */
 class OnePairHandSpecificationTest extends TestCase
 {
@@ -26,15 +23,9 @@ class OnePairHandSpecificationTest extends TestCase
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札が仕様を満たしているかを判定する_手札に同じランクのペアが１組あればtrueを返す(): void
+    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクのペアが１組と異なるランクの３枚ならtrueを返す(): void
     {
-        $onePairHand = new PlayerHand([
-            new Card(Suit::Hearts, Rank::Ace), // pair
-            new Card(Suit::Hearts, Rank::Two),
-            new Card(Suit::Diamonds, Rank::Three),
-            new Card(Suit::Spades, Rank::Four),
-            new Card(Suit::Clubs, Rank::Ace), // pair
-        ]);
+        $onePairHand = TestPlayerHandFactory::createOnePairHand();
 
         $this->assertTrue($this->specification->isSatisfiedBy($onePairHand));
     }
@@ -42,15 +33,9 @@ class OnePairHandSpecificationTest extends TestCase
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札が仕様を満たしているかを判定する_手札に同じランクのペアが１組もなければfalseを返す(): void
+    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクのペアが１組もなければfalseを返す(): void
     {
-        $noPairHand = new PlayerHand([
-            new Card(Suit::Hearts, Rank::Ace),
-            new Card(Suit::Hearts, Rank::Two),
-            new Card(Suit::Diamonds, Rank::Three),
-            new Card(Suit::Spades, Rank::Four),
-            new Card(Suit::Clubs, Rank::Five),
-        ]);
+        $noPairHand = TestPlayerHandFactory::createNoPairHand();
 
         $this->assertFalse($this->specification->isSatisfiedBy($noPairHand));
     }
@@ -58,31 +43,19 @@ class OnePairHandSpecificationTest extends TestCase
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札が仕様を満たしているかを判定する_手札に同じランクの３枚が１組あればfalseを返す(): void
+    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクの３枚と異なるランクの２枚ならfalseを返す(): void
     {
-        $ThreeCardsHand = new PlayerHand([
-            new Card(Suit::Hearts, Rank::Ace),
-            new Card(Suit::Clubs, Rank::Ace),
-            new Card(Suit::Spades, Rank::Ace),
-            new Card(Suit::Diamonds, Rank::Three),
-            new Card(Suit::Hearts, Rank::Four),
-        ]);
+        $threeCardsHand = TestPlayerHandFactory::createThreeCardsHand();
 
-        $this->assertFalse($this->specification->isSatisfiedBy($ThreeCardsHand));
+        $this->assertFalse($this->specification->isSatisfiedBy($threeCardsHand));
     }
 
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札が仕様を満たしているかを判定する_手札に同じランクのペアが２組あればfalseを返す(): void
+    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクのペアが２組あればfalseを返す(): void
     {
-        $twoPairHand = new PlayerHand([
-            new Card(Suit::Hearts, Rank::Ace), // pair 1
-            new Card(Suit::Clubs, Rank::Ace), // pair 1
-            new Card(Suit::Hearts, Rank::Two), // pair 2
-            new Card(Suit::Diamonds, Rank::Three),
-            new Card(Suit::Spades, Rank::Two), // pair 2
-        ]);
+        $twoPairHand = TestPlayerHandFactory::createTwoPairHand();
 
         $this->assertFalse($this->specification->isSatisfiedBy($twoPairHand));
     }
@@ -90,15 +63,9 @@ class OnePairHandSpecificationTest extends TestCase
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札が仕様を満たしているかを判定する_手札が同じランクのペアと３枚組であればfalseを返す(): void
+    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクのペアと別の同じランクの３枚であればfalseを返す(): void
     {
-        $fullHouseHand = new PlayerHand([
-            new Card(Suit::Hearts, Rank::Ace), // pair
-            new Card(Suit::Hearts, Rank::Two),
-            new Card(Suit::Diamonds, Rank::Two),
-            new Card(Suit::Spades, Rank::Two),
-            new Card(Suit::Clubs, Rank::Ace), // pair
-        ]);
+        $fullHouseHand = TestPlayerHandFactory::createFullHouseHand();
 
         $this->assertFalse($this->specification->isSatisfiedBy($fullHouseHand));
     }
