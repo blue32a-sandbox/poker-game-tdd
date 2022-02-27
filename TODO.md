@@ -7,7 +7,7 @@
     - [ ] フラッシュ（Flush）
     - [ ] ストレート（Straight）
     - [x] スリーカード（Three cards）
-    - [ ] ツーペア（Two pair）
+    - [x] ツーペア（Two pair）
     - [x] ワンペア（One pair）
     - [ ] ノーペア（No pair）
     - [ ] 強い役から評価する
