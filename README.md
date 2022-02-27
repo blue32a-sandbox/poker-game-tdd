@@ -29,10 +29,11 @@
 #### 一覧
 
 - ストレート・フラッシュ（Straight flush）
-- フォーカード（Four Cards）
+- フォーカード（Four cards）
 - フルハウス（Full house）
 - フラッシュ（Flush）
 - ストレート（Straight）
+- スリーカード（Three cards）
 - ツーペア（Two pair）
 - ワンペア（One pair）
 - ノーペア（No pair）

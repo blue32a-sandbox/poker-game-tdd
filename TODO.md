@@ -2,10 +2,11 @@
 
 - [ ] 手札の判定
     - [ ] ストレート・フラッシュ（Straight flush）
-    - [ ] フォーカード（Four Cards）
+    - [ ] フォーカード（Four cards）
     - [ ] フルハウス（Full house）
     - [ ] フラッシュ（Flush）
     - [ ] ストレート（Straight）
+    - [x] スリーカード（Three cards）
     - [ ] ツーペア（Two pair）
     - [x] ワンペア（One pair）
     - [ ] ノーペア（No pair）

@@ -7,7 +7,7 @@ namespace Poker\Hands;
 use Poker\PlayerHand;
 use Poker\Trump\Rank;
 
-class OnePairHandSpecification extends HandSpecification
+class ThreeCardsHandSpecification extends HandSpecification
 {
     public function isSatisfiedBy(PlayerHand $playerHand): bool
     {
@@ -20,17 +20,17 @@ class OnePairHandSpecification extends HandSpecification
             $countsForRank[$card->rank()->value]++;
         }
 
-        $countPair = 0;
+        $countThree = 0;
         $countSingle = 0;
 
         foreach ($countsForRank as $count) {
-            if ($count === 2) {
-                $countPair++;
+            if ($count === 3) {
+                $countThree++;
             } else if ($count === 1) {
                 $countSingle++;
             }
         }
 
-        return $countPair === 1 && $countSingle === 3;
+        return $countThree === 1 && $countSingle === 2;
     }
 }
