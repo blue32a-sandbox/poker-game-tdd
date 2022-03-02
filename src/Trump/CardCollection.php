@@ -17,6 +17,11 @@ class CardCollection
         }
     }
 
+    public function get(int $index): ?Card
+    {
+        return $this->cards[$index] ?? null;
+    }
+
     /**
      * @return Card[]
      */

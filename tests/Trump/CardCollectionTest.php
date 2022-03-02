@@ -42,6 +42,33 @@ class CardCollectionTest extends TestCase
     /**
      * @test
      */
+    public function getメソッドは指定した添字のカードを返す_0を渡すとHeartsのAceを返す(): void
+    {
+        $cards = $this->factoryCardCollection([
+            $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace),
+        ]);
+
+        $this->assertObjectEquals(
+            $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace),
+            $cards->get(0)
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getメソッドは指定した添字のカードを返す_存在しない添字の1を渡すとnullを返す(): void
+    {
+        $cards = $this->factoryCardCollection([
+            $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace),
+        ]);
+
+        $this->assertNull($cards->get(1));
+    }
+
+    /**
+     * @test
+     */
     public function toArrayメソッドはカードの配列を返す_コンストラクタに渡した枚数と同じ、2枚のカードを返す(): void
     {
         $cards = $this->factoryCardCollection([
