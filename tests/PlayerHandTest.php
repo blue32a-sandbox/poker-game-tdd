@@ -99,7 +99,7 @@ class PlayerHandTest extends TestCase
         $clubsJack = $this->factoryCard(suit: Suit::Clubs, rank: Rank::Jack);
         $changedPlayerHand = $playerHand->change(2, $clubsJack);
 
-        $this->assertObjectEquals($clubsJack, $changedPlayerHand->toArray()[1]);
+        $this->assertObjectEquals($clubsJack, $changedPlayerHand->get(1));
     }
 
     /**
@@ -117,7 +117,7 @@ class PlayerHandTest extends TestCase
         $playerHand->change(2, $clubsJack);
 
         // assertObjectEqualsの逆は無いらしい
-        $this->assertFalse($clubsJack->equals($playerHand->toArray()[1]));
+        $this->assertFalse($clubsJack->equals($playerHand->get(1)));
     }
 
     /**
