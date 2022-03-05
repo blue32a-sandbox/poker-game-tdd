@@ -16,7 +16,7 @@ class OnePairHandSpecification extends HandSpecification
             0
         );
 
-        foreach ($playerHand->toArray() as $card) {
+        foreach ($playerHand as $card) {
             $countsForRank[$card->rank()->value]++;
         }
 

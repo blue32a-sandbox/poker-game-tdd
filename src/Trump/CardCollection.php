@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Poker\Trump;
 
 use InvalidArgumentException;
+use IteratorAggregate;
+use Traversable;
 
-class CardCollection
+class CardCollection implements IteratorAggregate
 {
     public function __construct(protected array $cards)
     {
@@ -15,6 +17,11 @@ class CardCollection
                 throw new InvalidArgumentException('The value is not Card.');
             }
         }
+    }
+
+    public function getIterator(): Traversable
+    {
+        yield from $this->cards;
     }
 
     public function get(int $index): ?Card

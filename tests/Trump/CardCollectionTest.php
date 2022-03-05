@@ -42,6 +42,27 @@ class CardCollectionTest extends TestCase
     /**
      * @test
      */
+    public function クラスオブジェクトは反復処理することができる_反復処理するとHA、H2、H3のカードを返す(): void
+    {
+        $cardHA = $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace);
+        $cardH2 = $this->factoryCard(suit: Suit::Hearts, rank: Rank::Two);
+        $cardH3 = $this->factoryCard(suit: Suit::Hearts, rank: Rank::Three);
+        $cards = $this->factoryCardCollection([$cardHA, $cardH2, $cardH3]);
+
+        $foreachCards = [];
+
+        foreach ($cards as $key => $card) {
+            $foreachCards[$key] = $card;
+        }
+
+        $this->assertObjectEquals($cardHA, $foreachCards[0], 'equals', '添字0のカードはHA');
+        $this->assertObjectEquals($cardH2, $foreachCards[1], 'equals', '添字1のカードはH2');
+        $this->assertObjectEquals($cardH3, $foreachCards[2], 'equals', '添字2のカードはH3');
+    }
+
+    /**
+     * @test
+     */
     public function getメソッドは指定した添字のカードを返す_0を渡すとHeartsのAceを返す(): void
     {
         $cards = $this->factoryCardCollection([
