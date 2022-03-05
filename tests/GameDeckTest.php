@@ -18,7 +18,7 @@ class GameDeckTest extends TestCase
     public function factoryメソッドはデッキを生成する_デッキは52枚のカードで構成される(): void
     {
         $gemeDeck = GameDeck::factory();
-        $this->assertSame(52, count($gemeDeck->toArray()));
+        $this->assertSame(52, count($gemeDeck));
     }
 
     /**

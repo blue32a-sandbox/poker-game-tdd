@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Poker\Trump;
 
+use Countable;
 use InvalidArgumentException;
 use IteratorAggregate;
 use Traversable;
 
-class CardCollection implements IteratorAggregate
+class CardCollection implements Countable ,IteratorAggregate
 {
     public function __construct(protected array $cards)
     {
@@ -17,6 +18,11 @@ class CardCollection implements IteratorAggregate
                 throw new InvalidArgumentException('The value is not Card.');
             }
         }
+    }
+
+    public function count(): int
+    {
+        return count($this->cards);
     }
 
     public function getIterator(): Traversable

@@ -42,6 +42,20 @@ class CardCollectionTest extends TestCase
     /**
      * @test
      */
+    public function クラスオブジェクトは所持しているカードをカウントできる_countメソッドに渡すと3を返す(): void
+    {
+        $cards = $this->factoryCardCollection([
+            $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace),
+            $this->factoryCard(suit: Suit::Hearts, rank: Rank::Two),
+            $this->factoryCard(suit: Suit::Hearts, rank: Rank::Three),
+        ]);
+
+        $this->assertEquals(3, count($cards));
+    }
+
+    /**
+     * @test
+     */
     public function クラスオブジェクトは反復処理することができる_反復処理するとHA、H2、H3のカードを返す(): void
     {
         $cardHA = $this->factoryCard(suit: Suit::Hearts, rank: Rank::Ace);
