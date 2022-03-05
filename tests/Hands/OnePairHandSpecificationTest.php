@@ -23,50 +23,50 @@ class OnePairHandSpecificationTest extends TestCase
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクのペアが１組と異なるランクの３枚ならtrueを返す(): void
+    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクの2枚と別の3つのランクならtrueを返す(): void
     {
-        $onePairHand = TestPlayerHandFactory::createOnePairHand();
-
-        $this->assertTrue($this->specification->isSatisfiedBy($onePairHand));
+        $this->assertTrue($this->specification->isSatisfiedBy(
+            TestPlayerHandFactory::同じランクの2枚と別の3つのランクを持つハンド()
+        ));
     }
 
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクのペアが１組もなければfalseを返す(): void
+    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクの2枚が1組もなければfalseを返す(): void
     {
-        $noPairHand = TestPlayerHandFactory::createNoPairHand();
-
-        $this->assertFalse($this->specification->isSatisfiedBy($noPairHand));
+        $this->assertFalse($this->specification->isSatisfiedBy(
+            TestPlayerHandFactory::同じランクの2枚が無いハンド()
+        ));
     }
 
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクの３枚と異なるランクの２枚ならfalseを返す(): void
+    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクの3枚と別の2つのランクならfalseを返す(): void
     {
-        $threeCardsHand = TestPlayerHandFactory::createThreeCardsHand();
-
-        $this->assertFalse($this->specification->isSatisfiedBy($threeCardsHand));
+        $this->assertFalse($this->specification->isSatisfiedBy(
+            TestPlayerHandFactory::同じランクの3枚と別の2つのランクを持つハンド()
+        ));
     }
 
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクのペアが２組あればfalseを返す(): void
+    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクの2枚が2組あればfalseを返す(): void
     {
-        $twoPairHand = TestPlayerHandFactory::createTwoPairHand();
-
-        $this->assertFalse($this->specification->isSatisfiedBy($twoPairHand));
+        $this->assertFalse($this->specification->isSatisfiedBy(
+            TestPlayerHandFactory::同じランクの2枚と別の同じランクの2枚、さらに1枚の別のランクを持つハンド()
+        ));
     }
 
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクのペアと別の同じランクの３枚であればfalseを返す(): void
+    public function isSatisfiedByメソッドは手札がワンペアか判定する_同じランクの2枚と別の同じランクの3枚であればfalseを返す(): void
     {
-        $fullHouseHand = TestPlayerHandFactory::createFullHouseHand();
-
-        $this->assertFalse($this->specification->isSatisfiedBy($fullHouseHand));
+        $this->assertFalse($this->specification->isSatisfiedBy(
+            TestPlayerHandFactory::同じランクの3枚と別の同じランクの2枚を持つハンド()
+        ));
     }
 }

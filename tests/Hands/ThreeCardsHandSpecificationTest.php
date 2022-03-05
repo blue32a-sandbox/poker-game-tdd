@@ -23,40 +23,40 @@ class ThreeCardsHandSpecificationTest extends TestCase
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札がスリーカードか判定する_同じランクの３枚と異なるランクの２枚があればtrueを返す(): void
+    public function isSatisfiedByメソッドは手札がスリーカードか判定する_同じランクの3枚と別の2つのランクならtrueを返す(): void
     {
-        $threeCardsHand = TestPlayerHandFactory::createThreeCardsHand();
-
-        $this->assertTrue($this->specification->isSatisfiedBy($threeCardsHand));
+        $this->assertTrue($this->specification->isSatisfiedBy(
+            TestPlayerHandFactory::同じランクの3枚と別の2つのランクを持つハンド()
+        ));
     }
 
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札がスリーカードか判定する_同じランクの３枚が無ければfalseを返す(): void
+    public function isSatisfiedByメソッドは手札がスリーカードか判定する_同じランクの3枚が無ければfalseを返す(): void
     {
-        $onePairHand = TestPlayerHandFactory::createOnePairHand();
-
-        $this->assertFalse($this->specification->isSatisfiedBy($onePairHand));
+        $this->assertFalse($this->specification->isSatisfiedBy(
+            TestPlayerHandFactory::同じランクの2枚と別の3つのランクを持つハンド()
+        ));
     }
 
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札がスリーカードか判定する_同じランクの４枚があればfalseを返す(): void
+    public function isSatisfiedByメソッドは手札がスリーカードか判定する_同じランクのカード4枚ならfalseを返す(): void
     {
-        $fourCardsHand = TestPlayerHandFactory::createFourCardsHand();
-
-        $this->assertFalse($this->specification->isSatisfiedBy($fourCardsHand));
+        $this->assertFalse($this->specification->isSatisfiedBy(
+            TestPlayerHandFactory::同じランクのカード4枚と別のランクのカード1枚を持つハンド()
+        ));
     }
 
     /**
      * @test
      */
-    public function isSatisfiedByメソッドは手札がスリーカードか判定する_同じランクの３枚と別の同じランクの２枚があればfalseを返す(): void
+    public function isSatisfiedByメソッドは手札がスリーカードか判定する_同じランクの3枚と別の同じランクの2枚ならfalseを返す(): void
     {
-        $fullHouseHand = TestPlayerHandFactory::createFullHouseHand();
-
-        $this->assertFalse($this->specification->isSatisfiedBy($fullHouseHand));
+        $this->assertFalse($this->specification->isSatisfiedBy(
+            TestPlayerHandFactory::同じランクの3枚と別の同じランクの2枚を持つハンド()
+        ));
     }
 }
