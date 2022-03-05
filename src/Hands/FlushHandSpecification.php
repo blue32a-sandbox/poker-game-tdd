@@ -7,7 +7,6 @@ namespace Poker\Hands;
 use Poker\PlayerHand;
 use Poker\Trump\Card;
 use Poker\Trump\Rank;
-use Poker\Trump\Suit;
 
 class FlushHandSpecification extends HandSpecification
 {
@@ -17,11 +16,13 @@ class FlushHandSpecification extends HandSpecification
             return false;
         }
 
-        /** @var Suit[] $suits */
-        $suits = array_map(fn(Card $card): Suit => $card->suit(), $playerHand->toArray());
-        $uniqueSuits = array_unique($suits, SORT_REGULAR);
+        return $this->isAllSameSuit($playerHand);
+    }
 
-        return count($uniqueSuits) === 1;
+    private function isAllSameSuit(PlayerHand $playerHand): bool
+    {
+        $specification = new AllSameSuitPatternSpecification();
+        return $specification->isSatisfiedBy($playerHand);
     }
 
     private function isSequentialRank(PlayerHand $playerHand): bool

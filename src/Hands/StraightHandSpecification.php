@@ -7,17 +7,12 @@ namespace Poker\Hands;
 use Poker\PlayerHand;
 use Poker\Trump\Card;
 use Poker\Trump\Rank;
-use Poker\Trump\Suit;
 
 class StraightHandSpecification extends HandSpecification
 {
     public function isSatisfiedBy(PlayerHand $playerHand): bool
     {
-        /** @var Suit[] $suits */
-        $suits = array_map(fn(Card $card): Suit => $card->suit(), $playerHand->toArray());
-        $uniqueSuits = array_unique($suits, SORT_REGULAR);
-
-        if (count($uniqueSuits) === 1) {
+        if ($this->isAllSameSuit($playerHand)) {
             return false;
         }
 
@@ -34,5 +29,11 @@ class StraightHandSpecification extends HandSpecification
         }
 
         return true;
+    }
+
+    private function isAllSameSuit(PlayerHand $playerHand): bool
+    {
+        $specification = new AllSameSuitPatternSpecification();
+        return $specification->isSatisfiedBy($playerHand);
     }
 }
