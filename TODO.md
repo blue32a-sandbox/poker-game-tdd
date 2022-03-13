@@ -1,5 +1,7 @@
 # TODO
 
+- [x] 役の列挙型
+
 - [ ] 手札の判定
     - [x] ストレート・フラッシュ（Straight flush）
     - [x] フォーカード（Four cards）
