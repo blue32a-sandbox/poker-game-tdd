@@ -3,7 +3,7 @@
 - [ ] 手札の判定
     - [x] ストレート・フラッシュ（Straight flush）
     - [ ] フォーカード（Four cards）
-    - [ ] フルハウス（Full house）
+    - [x] フルハウス（Full house）
     - [x] フラッシュ（Flush）
     - [x] ストレート（Straight）
     - [x] スリーカード（Three cards）
