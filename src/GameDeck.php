@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Poker;
 
+use LogicException;
 use Poker\Trump\Card;
 use Poker\Trump\CardCollection;
 use Poker\Trump\Rank;
@@ -32,5 +33,20 @@ class GameDeck extends CardCollection
     private function __construct(protected array $cards)
     {
         parent::__construct($cards);
+    }
+
+    public function draw(): Card
+    {
+        if (count($this->cards) === 0) {
+            throw new LogicException('The game deck is empty.');
+        }
+
+        $card = array_shift($this->cards);
+
+        if (is_null($card)) {
+            throw new LogicException('cards is not array.');
+        }
+
+        return $card;
     }
 }

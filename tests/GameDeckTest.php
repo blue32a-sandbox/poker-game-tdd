@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use LogicException;
 use PHPUnit\Framework\TestCase;
 use Poker\GameDeck;
 
@@ -56,5 +57,44 @@ class GameDeckTest extends TestCase
     {
         $this->expectErrorMessageMatches('/Call to private Poker\\\\GameDeck::__construct()/');
         new GameDeck([]);
+    }
+
+    /**
+     * @test
+     */
+    public function drawメソッドはデッキの先頭からカード1枚取り出して返す_先頭にあるカードを返す(): void
+    {
+        $gameDeck = GameDeck::factory();
+        $topCard = $gameDeck->get(0);
+
+        $this->assertObjectEquals($topCard, $gameDeck->draw());
+    }
+
+    /**
+     * @test
+     */
+    public function drawメソッドはデッキの先頭からカード1枚取り出して返す_カードが1枚減る(): void
+    {
+        $gameDeck = GameDeck::factory();
+        $beforeCount = count($gameDeck);
+
+        $gameDeck->draw();
+
+        $this->assertCount($beforeCount - 1, $gameDeck);
+    }
+
+    /**
+     * @test
+     */
+    public function drawメソッドはデッキの先頭からカード1枚取り出して返す_カードが0枚のときは例外が発生する(): void
+    {
+        $gameDeck = GameDeck::factory();
+
+        while (count($gameDeck) > 0) {
+            $gameDeck->draw();
+        }
+
+        $this->expectException(LogicException::class);
+        $gameDeck->draw();
     }
 }
