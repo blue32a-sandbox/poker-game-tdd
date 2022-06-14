@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Hands;
+namespace Tests\Hands\Patterns;
 
 use PHPUnit\Framework\TestCase;
-use Poker\Hands\AllSameSuitPatternSpecification;
+use Poker\Hands\Patterns\AllSameSuitPatternSpecification;
 use Tests\Hands\Factory\TestPlayerHandFactory;
 
 /**

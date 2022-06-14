@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Poker\Hands;
 
+use Poker\Hands\Patterns\AllSameSuitPatternSpecification;
+use Poker\Hands\Patterns\SequentialRankPatternSpecification;
 use Poker\PlayerHand;
 
 class StraightHandSpecification implements HandSpecification

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Poker\Hands;
+namespace Poker\Hands\Patterns;
 
 use Poker\PlayerHand;
 use Poker\Trump\Card;
