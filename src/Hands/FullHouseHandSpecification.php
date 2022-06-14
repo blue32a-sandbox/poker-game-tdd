@@ -7,7 +7,7 @@ namespace Poker\Hands;
 use Poker\PlayerHand;
 use Poker\Trump\Rank;
 
-class FullHouseHandSpecification extends HandSpecification
+class FullHouseHandSpecification implements HandSpecification
 {
     public function isSatisfiedBy(PlayerHand $playerHand): bool
     {

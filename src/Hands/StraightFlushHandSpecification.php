@@ -6,7 +6,7 @@ namespace Poker\Hands;
 
 use Poker\PlayerHand;
 
-class StraightFlushHandSpecification extends HandSpecification
+class StraightFlushHandSpecification implements HandSpecification
 {
     public function isSatisfiedBy(PlayerHand $playerHand): bool
     {
