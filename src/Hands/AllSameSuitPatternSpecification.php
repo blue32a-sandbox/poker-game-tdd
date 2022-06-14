@@ -8,7 +8,7 @@ use Poker\PlayerHand;
 use Poker\Trump\Card;
 use Poker\Trump\Suit;
 
-class AllSameSuitPatternSpecification extends PatternSpecification
+class AllSameSuitPatternSpecification implements PatternSpecification
 {
     public function isSatisfiedBy(PlayerHand $playerHand): bool
     {

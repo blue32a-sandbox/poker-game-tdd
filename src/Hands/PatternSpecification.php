@@ -6,7 +6,7 @@ namespace Poker\Hands;
 
 use Poker\PlayerHand;
 
-abstract class PatternSpecification
+interface PatternSpecification
 {
-    abstract public function isSatisfiedBy(PlayerHand $playerHand): bool;
+    public function isSatisfiedBy(PlayerHand $playerHand): bool;
 }

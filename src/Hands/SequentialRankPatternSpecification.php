@@ -8,7 +8,7 @@ use Poker\PlayerHand;
 use Poker\Trump\Card;
 use Poker\Trump\Rank;
 
-class SequentialRankPatternSpecification extends PatternSpecification
+class SequentialRankPatternSpecification implements PatternSpecification
 {
     public function isSatisfiedBy(PlayerHand $playerHand): bool
     {
